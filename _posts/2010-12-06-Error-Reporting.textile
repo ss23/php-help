@@ -1,0 +1,35 @@
+---
+layout: post
+title: Error Reporting
+---
+
+h1. {{ page.title }}
+
+h2. Options that affect error reporting.
+
+* error_reporting
+* display_errors
+
+h6. error_reporting
+
+p. See http://au2.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting and http://au.php.net/function.error_reporting
+To see all errors, set this to '-1'. To see no errors, set this to '0'.
+If you have access to php.ini, set this option there. This can be set using the function specificed about, but it won't have an effect for fatal errors.
+
+
+h6. display_errors
+
+p. See http://au2.php.net/manual/en/errorfunc.configuration.php#ini.display-errors
+Make sure this is set to *On* to see errors. If you have this set to Off, you won't be able to see errors, even if you have error_reporting set at -1.
+
+
+*Gotcha*: Make sure that error_reporting isn't being overriden in one of your PHP scripts after being set in php.ini.
+*Gotcha*: Apache and the CLI have different php.ini's. Make sure you edit the php.ini specificed by Apache when running phpinfo() through your webserver, not the command line.
+
+h2. How should I set my error reporting?
+
+p. Set them good (AKA I'll write this later).
+
+h2. Help! I still can't see errors!
+
+p. If you're sure you've edited your php.ini, saved it, restarted Apache, and you still can't see errors, come to ##php on freenode and tell them the problem. Tell them you've tried everything listed here to no avail.
