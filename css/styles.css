@@ -1,3 +1,16 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Segoe UI", Tohama, sans-serif;
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 20px;
+}
+
 #header {
 	background-color: #B6D124;
 	height: 150px;
