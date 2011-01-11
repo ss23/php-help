@@ -90,7 +90,7 @@ If you instead get a password like: @$6a7f58gxvDVU@, it is likely that you're no
 
 So of course, now you just need to store this password in the database, and you're ready to start authenticating logins! Or at least you will be when you read the next section.
 
-h4. Authenticating Users.
+h3. Authenticating Users.
 
 While the PHP manual on crypt() provides a fairly complete example for this, I find it still trips people up quite commonly.
 To prove that it works fine, we'll use that output we got from my above code (feel free to use your own if you would like).
