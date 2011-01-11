@@ -83,10 +83,10 @@ Last, we have the salt. This can really be anything, as long as it's from a larg
 Now, we combine all of this for some PHP Voodoo Magic™.
 
 Running this script on "Viper's Codepad":http://codepad.viper-7.com gives me:
-$6$rounds=5000$4d2c68c2ef979$PZTAkwfvCZN0nT4La/0eNNKLt43w1B7DUkFNc9t1bnOG0OJRESnDa1E1H812TZ3CiBqd2qrcFrz2pk/kqpAy3/
+@$6$rounds=5000$4d2c68c2ef979$PZTAkwfvCZN0nT4La/0eNNKLt43w1B7DUkFNc9t1bnOG0OJRESnDa1E1H812TZ3CiBqd2qrcFrz2pk/kqpAy3/@
 which is the kind of output we expect.
 
-If you instead get a password like: $6a7f58gxvDVU, it is likely that you're not using PHP 5.3 or later, and that crypt() can't use the sha512 algo. Upgrade your PHP.
+If you instead get a password like: @$6a7f58gxvDVU@, it is likely that you're not using PHP 5.3 or later, and that crypt() can't use the sha512 algo. Upgrade your PHP.
 
 So of course, now you just need to store this password in the database, and you're ready to start authenticating logins! Or at least you will be when you read the next section.
 
