@@ -48,7 +48,7 @@ applications":http://www.schneier.com/blog/archives/2005/02/cryptanalysis_o.html
 
 Consider this example on generating a hash:
 
-<code class="php">
+{% highlight php %}
 <?php
 
 $Password = 'SuperSecurePassword123';
@@ -65,7 +65,7 @@ $HashedPassword = crypt($Password, $CryptSalt);
 echo "Generated a hashed password: " . $HashedPassword . "\n";
 
 ?>
-</code>
+{% endhighlight %}
 
 So, as you can see, we're calling crypt() with two parameters, as described in the manual.
 The first is simply the password (although I use $Password there, you would probably use $_POST['Password'], from when a user registers or changes password). The second is the "salt" described on the manual page, but I've split 
@@ -95,7 +95,7 @@ h3. Authenticating Users.
 While the PHP manual on crypt() provides a fairly complete example for this, I find it still trips people up quite commonly.
 To prove that it works fine, we'll use that output we got from my above code (feel free to use your own if you would like).
 
-<code class="php">
+{% highlight php %}
 <?php
 
 $Password1 = 'WrongPassword';
@@ -116,12 +116,12 @@ if (crypt($Password2, $HashedPassword) == $HashedPassword) {
 }
 
 ?>
-</code>
+{% endhighlight %}
 
 Really! This time it *is* that simple!
 If you're wondering how crypt() does this, you need look no further than in front of you! Remember what crypt() does? It takes and algo, a rounds, and a salt, and uses them to get a hash for a password. If you said "5000 rounds, 
-sha1, a salt of 'delicious' and a password of 'lol'", you would get the same result every time. So, our $HashedPassword has exactly that! The crypt() function will ignore the last bit, and see "crypt($Password, 
-'$6$rounds=5000$4d2c68c2ef979$');". You're giving it the exact same salt that was used the first time! So it can consitently generate the same $HashedPassword string, if you give it the right password.
+sha1, a salt of 'delicious' and a password of 'lol'", you would get the same result every time. So, our $HashedPassword has exactly that! The crypt() function will ignore the last bit, and see @crypt($Password, 
+'$6$rounds=5000$4d2c68c2ef979$');@—you're giving it the exact same salt that was used the first time! So it can consitently generate the same $HashedPassword string, if you give it the right password.
 
 h2. Wrapping up.
 
