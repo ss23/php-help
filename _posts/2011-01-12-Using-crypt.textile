@@ -28,6 +28,7 @@ let us continue.
 h3. Generating the Hash.
 
 <code class="php">
+{% highlight php %}
 <?php
 
 // You would of course, get this from $_POST['Password'] or similar when registering an account, or changing a password.
@@ -37,6 +38,7 @@ $HashedPassword = crypt($Password);
 echo "We've generated a new hashed password of: {$HashedPassword}, from {$Password}.";
 
 ?>
+{% endhighlight %}
 </code>
 
 See? Wasn't that simple? Of course, it's never *that* simple. If you read the manual, you should see the problem - An optional salt string to base the hashing on. If not provided, the behaviour is defined by the algorithm 
