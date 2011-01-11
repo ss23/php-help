@@ -37,7 +37,7 @@ $HashedPassword = crypt($Password);
 echo "We've generated a new hashed password of: {$HashedPassword}, from {$Password}.";
 
 ?>
-<code>
+</code>
 
 See? Wasn't that simple? Of course, it's never *that* simple. If you read the manual, you should see the problem - An optional salt string to base the hashing on. If not provided, the behaviour is defined by the algorithm 
 implementation and can lead to unexpected results.
@@ -48,7 +48,8 @@ applications":http://www.schneier.com/blog/archives/2005/02/cryptanalysis_o.html
 
 Consider this example on generating a hash:
 
-@<?php
+<code class="php">
+<?php
 
 $Password = 'SuperSecurePassword123';
 
@@ -63,7 +64,8 @@ $CryptSalt = '$' . $Algo . '$rounds=' . $Rounds . '$' . $Salt;
 $HashedPassword = crypt($Password, $CryptSalt);
 echo "Generated a hashed password: " . $HashedPassword . "\n";
 
-?>@
+?>
+</code>
 
 So, as you can see, we're calling crypt() with two parameters, as described in the manual.
 The first is simply the password (although I use $Password there, you would probably use $_POST['Password'], from when a user registers or changes password). The second is the "salt" described on the manual page, but I've split 
@@ -93,7 +95,8 @@ h4. Authenticating Users.
 While the PHP manual on crypt() provides a fairly complete example for this, I find it still trips people up quite commonly.
 To prove that it works fine, we'll use that output we got from my above code (feel free to use your own if you would like).
 
-@<?php
+<code class="php">
+<?php
 
 $Password1 = 'WrongPassword';
 $Password2 = 'SuperSecurePassword123';
@@ -112,7 +115,8 @@ if (crypt($Password2, $HashedPassword) == $HashedPassword) {
         echo "Hashed Password didn't match Password2";
 }
 
-?>@
+?>
+</code>
 
 Really! This time it *is* that simple!
 If you're wondering how crypt() does this, you need look no further than in front of you! Remember what crypt() does? It takes and algo, a rounds, and a salt, and uses them to get a hash for a password. If you said "5000 rounds, 
