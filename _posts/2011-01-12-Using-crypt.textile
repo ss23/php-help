@@ -27,7 +27,8 @@ let us continue.
 
 h3. Generating the Hash.
 
-@<?php
+<code class="php">
+<?php
 
 // You would of course, get this from $_POST['Password'] or similar when registering an account, or changing a password.
 $Password = 'MySuperSecretPassword123';
@@ -35,7 +36,8 @@ $Password = 'MySuperSecretPassword123';
 $HashedPassword = crypt($Password);
 echo "We've generated a new hashed password of: {$HashedPassword}, from {$Password}.";
 
-?>@
+?>
+<code>
 
 See? Wasn't that simple? Of course, it's never *that* simple. If you read the manual, you should see the problem - An optional salt string to base the hashing on. If not provided, the behaviour is defined by the algorithm 
 implementation and can lead to unexpected results.
