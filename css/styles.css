@@ -20,8 +20,8 @@ p {
 	margin-bottom: 1.5em;
 }
 
-code {
-	margin: 2em 0;
+strong {
+	font-weight: bold;
 }
 
 #header {
