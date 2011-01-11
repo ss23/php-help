@@ -2,11 +2,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: "Segoe UI", Tohama, sans-serif;
 }
 
-#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
-	margin-bottom: .5em;
-	margin-top: 1em;
-}
-
 h1 {
 	font-size: 32px;
 	font-weight: bold;
@@ -19,6 +14,10 @@ h2 {
 
 h3 {
 	font-size: 18px;
+}
+
+p {
+	margin-bottom: 1.5em;
 }
 
 #header {
@@ -46,10 +45,10 @@ h3 {
 #main {
 	background-color: #DEFF84; 
 	width: 100%;
-	height: 100%;
-	position: fixed;
+	min-height: 100%;
 	padding-top: 40px;
 	font-family: verdana;
+	padding-bottom: 20px;
 }
 
 #content {
@@ -62,6 +61,10 @@ h3 {
 	box-shadow: 10px 10px 5px #B6D124;
 	color: #333;
 	font-size: 12px;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+        margin-bottom: .5em;
 }
 
 /**
