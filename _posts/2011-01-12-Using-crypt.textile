@@ -1,0 +1,131 @@
+---
+layout: post
+title: Using crypt()
+---
+
+h1. {{ page.title }}
+
+h2. Understanding Password Security.
+
+(Disclaimer: Don't blame me when your web app gets pwnd by Russian hackers.)
+
+Proper password security has been discussed before, so unless I get really motivated one day, have a read of this material instead.
+
+* "##php Hashing Page":http://hashphp.org/hashing.html - Gives a really nice overview of the subject, not so much usable code. If you read nothing else on the topic, make sure you *read this*.
+* "PHP Security Consortium Article":http://phpsec.org/articles/2005/password-hashing.html - Old, this isn't what I would recommend today, but it's nice to be able to see real code and how you would implement a salt in a real 
+application.
+
+So now we know that simply storing a plaintext password, or an md5 of a passsword isn't enough! Preferably, we would have a randomized salt, combined with a lengthy algo (or streching a fast one).
+
+h2. The Solution.
+
+If you haven't already done so, I suggest you head over to the "PHP manual page on crypt()":http://php.net/crypt .
+Now, when I first read that, I found that incredibly confusing, and I'm guessing I'm not alone (judging from the people I see getting confused with this function in ##php).
+
+Now the reason for the function being implemented like that is to be consitent with "Unix crypt()":http://en.wikipedia.org/wiki/Crypt_(Unix), which makes sense. However, this means it's harder for new users to use. But I digress, 
+let us continue.
+
+h3. Generating the Hash.
+
+@
+<?php
+
+// You would of course, get this from $_POST['Password'] or similar when registering an account, or changing a password.
+$Password = 'MySuperSecretPassword123';
+
+$HashedPassword = crypt($Password);
+echo "We've generated a new hashed password of: {$HashedPassword}, from {$Password}.";
+
+?>
+@
+
+See? Wasn't that simple? Of course, it's never *that* simple. If you read the manual, you should see the problem - An optional salt string to base the hashing on. If not provided, the behaviour is defined by the algorithm 
+implementation and can lead to unexpected results.
+You get no guarantees about anything. So, what do we do? We generate a hash where *we* tell PHP what's going on!
+
+For the purposes for this example, we'll use the "sha512 algo":http://en.wikipedia.org/wiki/SHA-2. You can use others, but realise that md5 is a poor choice, and "sha1 is a poor choice for security critical 
+applications":http://www.schneier.com/blog/archives/2005/02/cryptanalysis_o.html.
+
+Consider this example on generating a hash:
+
+@
+<?php
+
+$Password = 'SuperSecurePassword123';
+
+// These only work for CRYPT_SHA512, but it should give you an idea of how crypt() works.
+$Salt = uniqid(); // Could use the second parameter to give it more entropy.
+$Algo = '6'; // This is CRYPT_SHA512 as shown on http://php.net/crypt
+$Rounds = '5000'; // The more, the more secure it is!
+
+// This is the "salt" string we give to crypt().
+$CryptSalt = '$' . $Algo . '$rounds=' . $Rounds . '$' . $Salt;
+
+$HashedPassword = crypt($Password, $CryptSalt);
+echo "Generated a hashed password: " . $HashedPassword . "\n";
+
+?>
+@
+
+So, as you can see, we're calling crypt() with two parameters, as described in the manual.
+The first is simply the password (although I use $Password there, you would probably use $_POST['Password'], from when a user registers or changes password). The second is the "salt" described on the manual page, but I've split 
+it up so you can see how each part of it "works".
+
+The salt follows the form "$ALGO$rounds=ROUNDS$SALT$" — It's a mouthful alright. 
+The first part, "$ALGO$". You can grab what you need for this on the PHP manual page for crypt(). We're using sha512, so we use "$6$". If you care 
+to look at MD5, it states use "$1$".  
+The next part, $Rounds, only applies to sha1 and sha512 algo's (if we were using MD5, we wouldn't include it). Basically, this tells PHP how many times to loop the hashing (this is the streching that was talked about in that 
+article *that you read*). If you don't understand why anyone would ever do this, read the first article I linked.
+You should set this value as high as you can before you experience performance issues, or users start complaining. Quite simply, the higher this is, the more time it takes for someone to crack your passwords. Try 5000, increase 
+in 1000 intervals, just play around.
+Last, we have the salt. This can really be anything, as long as it's from a large pool of possible values (meaning not just a number between 1 and 10).
+
+Now, we combine all of this for some PHP Voodoo Magic™.
+
+Running this script on "Viper's Codepad":http://codepad.viper-7.com gives me:
+$6$rounds=5000$4d2c68c2ef979$PZTAkwfvCZN0nT4La/0eNNKLt43w1B7DUkFNc9t1bnOG0OJRESnDa1E1H812TZ3CiBqd2qrcFrz2pk/kqpAy3/
+which is the kind of output we expect.
+
+If you instead get a password like: $6a7f58gxvDVU, it is likely that you're not using PHP 5.3 or later, and that crypt() can't use the sha512 algo. Upgrade your PHP.
+
+So of course, now you just need to store this password in the database, and you're ready to start authenticating logins! Or at least you will be when you read the next section.
+
+h4. Authenticating Users.
+
+While the PHP manual on crypt() provides a fairly complete example for this, I find it still trips people up quite commonly.
+To prove that it works fine, we'll use that output we got from my above code (feel free to use your own if you would like).
+
+@
+<?php
+
+$Password1 = 'WrongPassword';
+$Password2 = 'SuperSecurePassword123';
+$HashedPassword = '$6$rounds=5000$4d2c68c2ef979$PZTAkwfvCZN0nT4La/0eNNKLt43w1B7DUkFNc9t1bnOG0OJRESnDa1E1H812TZ3CiBqd2qrcFrz2pk/kqpAy3/';
+
+// Now, what about checking if a password is the right password?
+if (crypt($Password1, $HashedPassword) == $HashedPassword) {
+	echo "Hashed Password matched Password1";
+} else {
+	echo "Hashed Password didn't match Password1";
+}
+
+if (crypt($Password2, $HashedPassword) == $HashedPassword) {
+        echo "Hashed Password matched Password2";
+} else {
+        echo "Hashed Password didn't match Password2";
+}
+
+?>
+@
+
+Really! This time it *is* that simple!
+If you're wondering how crypt() does this, you need look no further than in front of you! Remember what crypt() does? It takes and algo, a rounds, and a salt, and uses them to get a hash for a password. If you said "5000 rounds, 
+sha1, a salt of 'delicious' and a password of 'lol'", you would get the same result every time. So, our $HashedPassword has exactly that! The crypt() function will ignore the last bit, and see "crypt($Password, 
+'$6$rounds=5000$4d2c68c2ef979$');". You're giving it the exact same salt that was used the first time! So it can consitently generate the same $HashedPassword string, if you give it the right password.
+
+h2. Wrapping up.
+
+So, we've learned why not using a decent password system is silly, and what makes one good (well, other people wrote those articles, I just linked them), how to generate "secure" hashes, and how to authenticate a user using them.
+This should be all you need to start using crypt() in your applications, but if you need any more help, come ask us at ##php on irc.freenode.net (and tell ss23 you read this article. If you're having trouble understanding 
+something, this this article needs to be updated to help the next user who might have the same misunderstanding.)
+
