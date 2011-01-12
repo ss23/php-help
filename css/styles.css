@@ -24,6 +24,10 @@ strong {
 	font-weight: bold;
 }
 
+a {
+	text-decoration: none;
+}
+
 #header {
 	background-color: #B6D124;
 	height: 150px;
@@ -71,9 +75,15 @@ strong {
         margin-bottom: .5em;
 }
 
+#content a {
+	text-decoration: underlined;
+	color: #A6C114;
+}
+
 /**
 
 Orange Red: #FF723A
 Yellow Green: #B6D124
 Blue Purple: #3E2E85
 Blue: #0059A8
+
