@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-family: 'Calligraffitti', Tahoma, sans-serif;
+	font-family: 'Calligraffitti', , sans-serif;
 	font-size: 32px;
 	font-weight: bold;
 	text-align: center;
@@ -30,24 +30,25 @@ a {
 }
 
 #header {
-	background-color: #B6D124;
-	height: 150px;
+	background-color: #F2F5D0;
+	height: 300px;
 	width: 100%;
 }
 
 #header h1 {
 	font-family: Calligraffitti, Georgia;
 	font-size: 74px;
-	text-shadow: #374268 3px 3px 4px;
-	color: #FFF;
+	text-shadow: #E5DEA5 3px 3px 4px;
+	color: #454A40;
 	text-align: center;
 	padding-top: 20px;
+	font-weight: bold;
 }
 
 #band {
 	width: 100%;
-	height: 10px;
-	background: #3B3E49;
+	height: 7px;
+	background: #292621;
 }
 
 #main {
@@ -69,6 +70,13 @@ a {
 	box-shadow: 10px 10px 5px #B6D124;
 	color: #333;
 	font-size: 12px;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, rgb(199,224,209)),
+		color-stop(1, rgb(242,245,208))
+	);
 }
 
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
