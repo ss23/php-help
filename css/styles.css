@@ -31,7 +31,7 @@ a {
 
 #header {
 	background-color: #F2F5D0;
-	height: 230px;
+	height: 220px;
 	width: 100%;
 }
 
@@ -73,9 +73,10 @@ a {
 	width: 980px;
 	border-radius: 10px;
 	margin: 0 auto;
-	padding: 20px;
+	padding: 10px 20px 20px;
 	color: #333;
 	font-size: 12px;
+	border: 2px solid #292621;
 }
 
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
