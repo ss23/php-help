@@ -68,13 +68,13 @@ a {
 }
 
 #content {
+	position: relative;
+	top: -100px;
 	background-color: white;
 	width: 980px;
 	border-radius: 10px;
 	margin: 0 auto;
 	padding: 20px;
-	-webkit-box-shadow: 10px 10px 5px #B6D124;
-	box-shadow: 10px 10px 5px #B6D124;
 	color: #333;
 	font-size: 12px;
 }
