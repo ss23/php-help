@@ -31,6 +31,9 @@ a {
 
 blockquote {
 	font-family: Calligraffitti;
+	font-size: 18px;
+	text-align: center;
+	padding: 0 60px;
 }
 
 blockquote:before {
