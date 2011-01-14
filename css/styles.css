@@ -58,6 +58,13 @@ a {
 	padding-top: 40px;
 	font-family: verdana;
 	padding-bottom: 20px;
+        background-image: -webkit-gradient(
+                linear,
+                left top,
+                left bottom,
+                color-stop(0, rgb(199,224,209)),
+                color-stop(1, rgb(242,245,208))
+        );
 }
 
 #content {
@@ -70,13 +77,6 @@ a {
 	box-shadow: 10px 10px 5px #B6D124;
 	color: #333;
 	font-size: 12px;
-	background-image: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		color-stop(0, rgb(199,224,209)),
-		color-stop(1, rgb(242,245,208))
-	);
 }
 
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
