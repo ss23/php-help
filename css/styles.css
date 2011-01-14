@@ -59,12 +59,12 @@ a {
 	font-family: verdana;
 	padding-bottom: 20px;
         background-image: -webkit-gradient(
-                linear,
-                left top,
-                left bottom,
-                color-stop(0, rgb(199,224,209)),
-                color-stop(1, rgb(242,245,208))
-        );
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(255,255,255)),
+		color-stop(1, rgb(199,224,209))
+	);
 }
 
 #content {
