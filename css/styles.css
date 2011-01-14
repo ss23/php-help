@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-family: 'Calligraffitti', , sans-serif;
+	font-family: 'Calligraffitti', Georgia, sans-serif;
 	font-size: 32px;
 	font-weight: bold;
 	text-align: center;
@@ -27,6 +27,18 @@ strong {
 
 a {
 	text-decoration: none;
+}
+
+blockquote {
+	font-family: Calligraffitti;
+}
+
+blockquote:before {
+	content: "&#8220;";
+}
+
+blockquote:after {
+	content: "&#8221;";
 }
 
 #header {
