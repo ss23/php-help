@@ -31,7 +31,7 @@ a {
 
 #header {
 	background-color: #F2F5D0;
-	height: 300px;
+	height: 230px;
 	width: 100%;
 }
 
@@ -54,7 +54,6 @@ a {
 #main {
 	background-color: #DEFF84; 
 	width: 100%;
-	min-height: 100%;
 	padding-top: 40px;
 	font-family: verdana;
 	padding-bottom: 20px;
@@ -63,7 +62,7 @@ a {
 		left top,
 		left bottom,
 		color-stop(0, rgb(255,255,255)),
-		color-stop(1, rgb(199,224,209))
+		color-stop(.5, rgb(199,224,209))
 	);
 }
 
