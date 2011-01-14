@@ -35,10 +35,18 @@ blockquote {
 
 blockquote:before {
 	content: "“";
+	font-size: 76px;
+	position: absolute;
+	left: 30px;
+	top: 50px;
 }
 
 blockquote:after {
 	content: "”";
+        font-size: 76px;
+        position: absolute;
+        right: 30px;
+        top: 50px;
 }
 
 #header {
