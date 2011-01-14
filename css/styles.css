@@ -48,7 +48,7 @@ blockquote:after {
 	content: "”";
         font-size: 76px;
         position: absolute;
-        right: 30px;
+        right: 50px;
         top: 50px;
 }
 
