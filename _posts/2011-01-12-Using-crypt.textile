@@ -5,6 +5,8 @@ title: Using crypt()
 
 h1. {{ page.title }}
 
+bq.:http://blog.moertel.com/articles/2006/12/15/never-store-passwords-in-a-database/ When it comes to web-app authentication, cutting corners doesn't buy you anything. It doesn't save you coding time. It doesn't give your users a better experience. All it does is weaken the security of your web site, needlessly putting your users, your employer, and yourself at risk.
+
 h2. Understanding Password Security.
 
 (Disclaimer: Don't blame me when your web app gets pwnd by Russian hackers.)
@@ -14,11 +16,11 @@ Proper password security has been discussed before, so unless I get really motiv
 * "##php Hashing Page":http://hashphp.org/hashing.html - Gives a really nice overview of the subject, not so much usable code. If you read nothing else on the topic, make sure you *read this*.
 * "PHP Security Consortium Article":http://phpsec.org/articles/2005/password-hashing.html - Old, this isn't what I would recommend today, but it's nice to be able to see real code and how you would implement a salt in a real application.
 
-So now we know that simply storing a plaintext password, or an md5 of a passsword isn't enough! Preferably, we would have a randomized salt, combined with a lengthy algo (or streching a fast one).
+So now we know that simply storing a plaintext password, or a simple hash of a passsword isn't enough! Preferably, we need a randomized salt, combined with an algorithm that is designed to be slow (or streching a fast algorithm).
 
 h2. The Solution.
 
-If you haven't already done so, I suggest you head over to the "PHP manual page on crypt()":http://php.net/crypt .
+If you haven't already done so, I suggest you head over to the "PHP manual page on crypt()":http://php.net/crypt.
 Now, when I first read that, I found that incredibly confusing, and I'm guessing I'm not alone (judging from the people I see getting confused with this function in ##php).
 
 Now the reason for the function being implemented like that is to be consitent with "Unix crypt()":http://en.wikipedia.org/wiki/Crypt_(Unix), which makes sense. However, this means it's harder for new users to use. But I digress, let us continue.
