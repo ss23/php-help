@@ -1,0 +1,4 @@
+Rwar
+{% for post in site.posts %}
+{{ page.rooturl }}{{ post.url }}
+{% endfor %}
