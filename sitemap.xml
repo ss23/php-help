@@ -4,14 +4,14 @@ rooturi: http://php.ss23.geek.nz
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>{{ page.rooturl }}/</loc>
+		<loc>{{ page.rooturi }}/</loc>
 		<lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1</priority>
 	</url>
 {% for post in site.posts %}
         <url>
-                <loc>{{ page.rooturl }}/</loc>
+                <loc>{{ page.rooturi }}{{ post.url }}</loc>
                 <lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>1</priority>
