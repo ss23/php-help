@@ -25,6 +25,24 @@ Now, when I first read that, I found that incredibly confusing, and I'm guessing
 
 Now the reason for the function being implemented like that is to be consitent with "Unix crypt()":http://en.wikipedia.org/wiki/Crypt_(Unix), which makes sense. However, this means it's harder for new users to use. But I digress, let us continue.
 
+h3. Before we start
+
+Before we can jump right in, there are some version requirements. I highly recommend using the latest PHP 5.3, at *least* 5.3.2. The 5.2 branch is EOL.
+Make sure you can follow along with the example, by checking if the @CRYPT_SHA512@ constant is both defined, and set to 1.
+
+{% highlight php %}
+<?php
+
+if (defined('CRYPT_SHA512') && CRYPT_SHA512) {
+	echo "You can follow the example!";
+} else {
+	echo "Time to upgrade your PHP.";
+}
+?>
+{% endhighlight %}
+
+Note that you might be able to use crypt() even without SHA512. If you're on 5.3.0 < 5.3.2, blowfish (bcrypt) is valid hash to use.
+
 h3. Generating the Hash.
 
 {% highlight php %}
