@@ -13,7 +13,7 @@ h2. Understanding Password Security.
 
 Proper password security has been discussed before, so unless I get really motivated one day, have a read of this material instead.
 
-* "##php Hashing Page":http://hashphp.org/hashing.html - Gives a really nice overview of the subject, not so much usable code. If you read nothing else on the topic, make sure you *read this*.
+* "##php Clone of Ptacek's Article on Hashing":http://hashphp.org/hashing.html - Gives a really nice overview of the subject, not so much usable code. If you read nothing else on the topic, make sure you *read this*.
 * "PHP Security Consortium Article":http://phpsec.org/articles/2005/password-hashing.html - Old, this isn't what I would recommend today, but it's nice to be able to see real code and how you would implement a salt in a real application.
 
 So now we know that simply storing a plaintext password, or a simple hash of a passsword isn't enough! Preferably, we need a randomized salt, combined with an algorithm that is designed to be slow (or streching a fast algorithm).
