@@ -136,5 +136,6 @@ If you're wondering how crypt() does this, you need look no further than in fron
 h2. Wrapping up.
 
 So, we've learned why not using a decent password system is silly, and what makes one good (well, other people wrote those articles, I just linked them), how to generate "secure" hashes, and how to authenticate a user using them.
-This should be all you need to start using crypt() in your applications, but if you need any more help, come ask us at ##php on irc.freenode.net (and tell ss23 you read this article. If you're having trouble understanding something, this this article needs to be updated to help the next user who might have the same misunderstanding.)
+
+This should be all you need to start using crypt() in your applications, but if you need any more help, come ask us at ##php on irc.freenode.net (and tell ss23 you read this article. If you're having trouble understanding something, this article needs to be updated to help the next user who might have the same misunderstanding.)
 
